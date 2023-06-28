@@ -7,7 +7,8 @@ const recognition = new speechRecognition();
 // recognition.continuous = true;
 
 recognition.onresult = (event) => {
-    result.innerHTML = event.results[0][0]['transcript']
+    console.log(event.results[0][0]['transcript'])
+    result.value += " "+ event.results[0][0]['transcript'];
 }
 
 recognition.onstart = () => {
