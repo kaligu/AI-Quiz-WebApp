@@ -71,12 +71,21 @@ function Quiz(id, question, correctAnswer, correctAnswerSyntaxes, correctAnswerS
     }
 }
 
+
+
+
+
 //      Database Initialise
 let quiz1 = new Quiz(1, 'What is your pet?', 'dog', 'kiri laki',2 , 'https://kaligu.github.io/MyProfile/','', '',  0);
 quizObjList.push(quiz1);
 
 let quiz2 = new Quiz(2, 'What is your car?', 'toyota', 'toyota hilux',2 , '', '','',0);
 quizObjList.push(quiz2);
+
+
+
+
+
 
 // Generate the HTML code
 let htmlCode = "";
