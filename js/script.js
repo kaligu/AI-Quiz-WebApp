@@ -73,18 +73,18 @@ const questionsAndAnswers = [
         question: "What is Networks?",
         answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
     },
-    // {
-    //     question: "What is Networks?",
-    //     answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
-    // },
-    // {
-    //     question: "What is Networks?",
-    //     answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
-    // },
-    // {
-    //     question: "What is Networks?",
-    //     answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
-    // },
+    {
+        question: "What is Networks?",
+        answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
+    },
+    {
+        question: "What is Networks?",
+        answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
+    },
+    {
+        question: "What is Networks?",
+        answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
+    },
     {
         question: "What is HTML?",
         answer: "HTML stands for HyperText Markup Language, which is the standard markup language for creating web pages.",
@@ -94,74 +94,119 @@ const questionsAndAnswers = [
 
 // Generate the HTML code
 let htmlCode = "";
+const recognitions = []; // Array to store recognition instances
+
 questionsAndAnswers.forEach((qa, index) => {
-    $(`
+    const htmlElement = $(`
     <div class="fp-con-cnt-cc">
       <div>
         <button type="button" class="btn btn-secondary">🔊 Question</button>
-        <button type="button" class="btn btn-success" style="margin-left: 20px" id="btn">🎙 Answer</button>
-        <button type="button" class="btn btn-primary" style="margin-left: 20px" id="submit">👉 Submit</button>
+        <button type="button" class="btn btn-success" style="margin-left: 20px" id="answerbtn${index + 1}">🎙 Answer</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 20px" id="submit${index + 1}">👉 Submit</button>
       </div>
       <div>
         <label class="form-label" style="color: white" id="lblQuestion">${index + 1}) ${qa.question}</label>
       </div>
       <div>
-        <input class="form-control" id="txtareaUserAnswer" placeholder="Type here answer..." style="width: 500px">
-        <label for="txtareaUserAnswer"></label>
+        <input class="form-control" id="txtareaUserAnswer${index + 1}" placeholder="Type here answer..." style="width: 500px">
+        <label for="txtareaUserAnswer${index + 1}"></label>
       </div>
     </div>
-  `).appendTo('.fp-con-cnt');
+  `);
+
+    // Append the HTML element to the desired container
+    htmlElement.appendTo('.fp-con-cnt');
+
+    const recognition = new webkitSpeechRecognition();
+    recognitions[index] = recognition; // Store recognition instance in the array
+
+    recognitions[index].onresult = (event) => {
+        console.log(event.results[0][0].transcript);
+        $('#txtareaUserAnswer' + (index + 1)).val(function(_, val) {
+            return val + ' ' + event.results[0][0].transcript;
+        });
+    };
+
+    recognitions[index].onstart = () => {
+        $('#answerbtn' + (index + 1)).text('Recording...');
+    };
+
+    recognitions[index].onspeechend = () => {
+        $('#answerbtn' + (index + 1)).text('Recording Ended.');
+        setTimeout(() => {
+            $('#answerbtn' + (index + 1)).text('🎙 Answer');
+        }, 2000);
+    };
+
+    recognitions[index].onerror = () => {
+        $('#answerbtn' + (index + 1)).text('Some error occurred! Try again.');
+        setTimeout(() => {
+            $('#answerbtn' + (index + 1)).text('🎙 Answer');
+        }, 5000);
+    };
+
+    $('#answerbtn' + (index + 1)).on('click', () => {
+        recognitions[index].start();
+    });
+
+    // Add unique actions for each HTML element
+    $('#submit' + (index + 1)).on('click', () => {
+        // Handle submit button click action for this element
+        console.log(`Submit button clicked for element ${index + 1}`);
+    });
 });
 
 // Output the generated HTML code
 console.log(htmlCode);
 
 
+
+
 /////////////////////////////////////////////////////////////////////////////////////
 //      Bussiness logics
 ////////////////////////////////////////////////////////////////////////////////////
 
-const result = document.querySelector('#txtareaUserAnswer');
-const btn = document.querySelector('#btn');
-const copyBtn = document.querySelector('#copyBtn');
-const speechRecognition = window.webkitSpeechRecognition;
-const recognition = new speechRecognition();
-
-recognition.onresult = (event) => {
-    console.log(event.results[0][0]['transcript'])
-    result.value += " "+ event.results[0][0]['transcript'];
-}
-
-recognition.onstart = () => {
-    btn.innerHTML = 'Recording...'
-}
-
-recognition.onspeechend = () => {
-    btn.innerHTML = 'Recording Ended.'
-    setTimeout(() => {
-        btn.innerHTML = '🎙 Answer'
-    },2000);
-}
-
-recognition.onerror = () => {
-    btn.innerHTML = 'Some error occured! try again.'
-    setTimeout(() => {
-        btn.innerHTML = '🎙 Answer'
-    },5000);
-}
-
-
-btn.addEventListener('click', () => {
-    recognition.start();
-});
-
-function copyText() {
-    const copyText = result;
-    copyText.select();
-    copyText.setSelectionRange(0, 99999)
-    document.execCommand("copy");
-    copyBtn.innerText = 'Copied!!'
-    setTimeout(() => {
-        copyBtn.innerHTML = 'Copy Text'
-    },3000);
-}
+// const result = document.querySelector('#txtareaUserAnswer');
+// const btn = document.querySelector('#btn');
+// const copyBtn = document.querySelector('#copyBtn');
+// const speechRecognition = window.webkitSpeechRecognition;
+// const recognition = new speechRecognition();
+//
+// recognition.onresult = (event) => {
+//     console.log(event.results[0][0]['transcript'])
+//     result.value += " "+ event.results[0][0]['transcript'];
+// }
+//
+// recognition.onstart = () => {
+//     btn.innerHTML = 'Recording...'
+// }
+//
+// recognition.onspeechend = () => {
+//     btn.innerHTML = 'Recording Ended.'
+//     setTimeout(() => {
+//         btn.innerHTML = '🎙 Answer'
+//     },2000);
+// }
+//
+// recognition.onerror = () => {
+//     btn.innerHTML = 'Some error occured! try again.'
+//     setTimeout(() => {
+//         btn.innerHTML = '🎙 Answer'
+//     },5000);
+// }
+//
+//
+// btn.addEventListener('click', () => {
+//     recognition.start();
+// });
+//
+// function copyText() {
+//     const copyText = result;
+//     copyText.select();
+//     copyText.setSelectionRange(0, 99999)
+//     document.execCommand("copy");
+//     copyBtn.innerText = 'Copied!!'
+//     setTimeout(() => {
+//         copyBtn.innerHTML = 'Copy Text'
+//     },3000);
+// }
