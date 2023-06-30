@@ -6,7 +6,7 @@ var quizObjList = new Array();
 /////////////////////////////////////////////////////////////////////////////////////
 //      Object
 /////////////////////////////////////////////////////////////////////////////////////
-function Quiz () {
+function Quiz (id , question , correctAnswer , correctAnswerSyntaxes , userAnswer , userAnswerMarks) {
     var __id = id;
     var __question = question;
     var __correctAnswer = correctAnswer;
@@ -57,14 +57,14 @@ function Quiz () {
 /////////////////////////////////////////////////////////////////////////////////////
 //      Database Initialise
 ////////////////////////////////////////////////////////////////////////////////////
-
+let quiz1 = new Quiz(1,'What is your pet?', 'dog' ,'kiri laki', '', 0);
 
 /////////////////////////////////////////////////////////////////////////////////////
 //      Bussiness logics
 ////////////////////////////////////////////////////////////////////////////////////
 
-const result = document.querySelector('.tetxarea');
-const btn = document.querySelector('.btn');
+const result = document.querySelector('#tetxarea');
+const btn = document.querySelector('#btn');
 const copyBtn = document.querySelector('#copyBtn');
 const speechRecognition = window.webkitSpeechRecognition;
 const recognition = new speechRecognition();
@@ -81,15 +81,15 @@ recognition.onstart = () => {
 recognition.onspeechend = () => {
     btn.innerHTML = 'Recording Ended.'
     setTimeout(() => {
-        btn.innerHTML = 'Record'
+        btn.innerHTML = '🎙 Answer'
     },2000);
 }
 
 recognition.onerror = () => {
     btn.innerHTML = 'Some error occured! try again.'
     setTimeout(() => {
-        btn.innerHTML = 'Record'
-    },2000);
+        btn.innerHTML = '🎙 Answer'
+    },5000);
 }
 
 
