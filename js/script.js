@@ -1,12 +1,8 @@
-/////////////////////////////////////////////////////////////////////////////////////
-//      databaase
-////////////////////////////////////////////////////////////////////////////////////
-var quizObjList = new Array();
+//      Database
+var quizObjList = [];
 
-/////////////////////////////////////////////////////////////////////////////////////
 //      Object
-/////////////////////////////////////////////////////////////////////////////////////
-function Quiz (id , question , correctAnswer , correctAnswerSyntaxes , userAnswer , userAnswerMarks) {
+function Quiz(id, question, correctAnswer, correctAnswerSyntaxes, userAnswer, userAnswerMarks) {
     var __id = id;
     var __question = question;
     var __correctAnswer = correctAnswer;
@@ -51,52 +47,20 @@ function Quiz (id , question , correctAnswer , correctAnswerSyntaxes , userAnswe
     this.setUserAnswerMarks = function (newuserAnswerMarks) {
         __userAnswerMarks = newuserAnswerMarks;
     }
-
 }
 
-/////////////////////////////////////////////////////////////////////////////////////
 //      Database Initialise
-////////////////////////////////////////////////////////////////////////////////////
-
-let quiz1 = new Quiz(1,'What is your pet?', 'dog' ,'kiri laki', '', 0);
+let quiz1 = new Quiz(1, 'What is your pet?', 'dog', 'kiri laki', '', 0);
 quizObjList.push(quiz1);
 
-let quiz2 = new Quiz(1,'What is your car?', 'toyota' ,'toyota hilux', '', 0);
+let quiz2 = new Quiz(2, 'What is your car?', 'toyota', 'toyota hilux', '', 0);
 quizObjList.push(quiz2);
-
-const questionsAndAnswers = [
-    {
-        question: "What is Networks?",
-        answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
-    },
-    {
-        question: "What is Networks?",
-        answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
-    },
-    {
-        question: "What is Networks?",
-        answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
-    },
-    {
-        question: "What is Networks?",
-        answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
-    },
-    {
-        question: "What is Networks?",
-        answer: "Networks refer to a group of interconnected devices or systems that can communicate and share resources with each other.",
-    },
-    {
-        question: "What is HTML?",
-        answer: "HTML stands for HyperText Markup Language, which is the standard markup language for creating web pages.",
-    },
-    // Add more questions and answers as needed
-];
 
 // Generate the HTML code
 let htmlCode = "";
 const recognitions = []; // Array to store recognition instances
 
-questionsAndAnswers.forEach((qa, index) => {
+quizObjList.forEach((quiz, index) => {
     const htmlElement = $(`
     <div class="fp-con-cnt-cc">
       <div>
@@ -105,7 +69,7 @@ questionsAndAnswers.forEach((qa, index) => {
         <button type="button" class="btn btn-primary" style="margin-left: 20px" id="submit${index + 1}">👉 Submit</button>
       </div>
       <div>
-        <label class="form-label" style="color: white" id="lblQuestion">${index + 1}) ${qa.question}</label>
+        <label class="form-label" style="color: white" id="lblQuestion">${index + 1}) ${quiz.getQuestion()}</label>
       </div>
       <div>
         <input class="form-control" id="txtareaUserAnswer${index + 1}" placeholder="Type here answer..." style="width: 500px">
@@ -117,8 +81,7 @@ questionsAndAnswers.forEach((qa, index) => {
     // Append the HTML element to the desired container
     htmlElement.appendTo('.fp-con-cnt');
 
-    const recognition = new webkitSpeechRecognition();
-    recognitions[index] = recognition; // Store recognition instance in the array
+    recognitions[index] = new webkitSpeechRecognition(); // Store recognition instance in the array
 
     recognitions[index].onresult = (event) => {
         console.log(event.results[0][0].transcript);
@@ -158,6 +121,7 @@ questionsAndAnswers.forEach((qa, index) => {
 
 // Output the generated HTML code
 console.log(htmlCode);
+
 
 
 
