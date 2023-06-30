@@ -129,12 +129,68 @@ console.log(htmlCode);
 /////////////////////////////////////////////////////////////////////////////////////
 //      Bussiness logics
 ////////////////////////////////////////////////////////////////////////////////////
-
+//
+// const txtareaUserAnswerlbl = $('.txtareaUserAnswerlbl');
 // const result = document.querySelector('#txtareaUserAnswer');
 // const btn = document.querySelector('#btn');
-// const copyBtn = document.querySelector('#copyBtn');
+// const questionBtn = document.querySelector('#questionbtn');
+// const lblQuestion = document.querySelector('#lblQuestion');
 // const speechRecognition = window.webkitSpeechRecognition;
 // const recognition = new speechRecognition();
+//
+//
+// const CountofAnswers = document.querySelector('#lblCountofAnswers');
+// const correctAnswerSyntaxes = ['cat', 'pet'];
+// const submitbtn = document.querySelector('#submit');
+//
+// // Function to count the occurrences of a substring in an array of strings
+// function countSubstringOccurrencesInArray(array, substring) {
+//     let count = 0;
+//     for (let i = 0; i < array.length; i++) {
+//         if (substring.includes(array[i])) {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
+//
+// function highlightOccurrences(text, keywords) {
+//     keywords.forEach(keyword => {
+//         console.log(keyword);
+//         text = text.replace(keyword, '<span style="color: yellow;">${keyword}</span>');
+//     });
+//     return text;
+// }
+//
+// submitbtn.addEventListener('click', () => {
+//     txtareaUserAnswerlbl.innerHTML = highlightOccurrences(result.value, correctAnswerSyntaxes);
+//
+//     CountofAnswers.textContent = countSubstringOccurrencesInArray(correctAnswerSyntaxes, result.value);
+// });
+//
+//
+//
+// questionBtn.addEventListener('click', () => {
+//     const text = lblQuestion.textContent;
+//
+//     // Set button text to "Speaking"
+//     questionBtn.textContent = 'Speaking...';
+//     questionBtn.disabled = true;
+//
+//     const speech = new SpeechSynthesisUtterance(text);
+//
+//     speech.addEventListener('end', () => {
+//         // Set button text back to "Question" after speaking is finished
+//         questionBtn.textContent = '🔊 Question';
+//         questionBtn.disabled = false;
+//     });
+//
+//     speechSynthesis.speak(speech);
+// });
+//
+//
+//
+//
 //
 // recognition.onresult = (event) => {
 //     console.log(event.results[0][0]['transcript'])

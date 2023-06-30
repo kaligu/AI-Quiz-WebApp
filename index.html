@@ -8,65 +8,113 @@
 
     <title>Title</title>
 <!--    add styles css file-->
-    <link rel="stylesheet" href="css/styles.css">
+<!--    <link rel="stylesheet" href="css/styles.css">-->
 
 </head>
-<body>
-  <main>
-      <!-- first page section-->
-      <section class="fp" id="fp" >
-          <!-- first page main container -->
-          <div class="fp-con" data-aos="fade-up" data-aos-duration="500">
-              <!-- first page main container content-->
-              <div class="fp-con-cnt" >
-                  <!--content header-->
-                  <div class="fp-con-cnt-ch">
+<body style="background-color: black;">
 
-                  </div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+</div>
+
+
+<!--  <main>-->
+<!--      &lt;!&ndash; first page section&ndash;&gt;-->
+<!--      <section class="fp" id="fp" >-->
+<!--          &lt;!&ndash; first page main container &ndash;&gt;-->
+<!--          <div class="fp-con" data-aos="fade-up" data-aos-duration="500">-->
+<!--              &lt;!&ndash; first page main container content&ndash;&gt;-->
+<!--              <div class="fp-con-cnt" >-->
+<!--                  &lt;!&ndash;content header&ndash;&gt;-->
+<!--                  <div class="fp-con-cnt-ch">-->
+
+<!--                  </div>-->
 <!--                  &lt;!&ndash;content quiz content&ndash;&gt;-->
-<!--                  <div class="fp-con-cnt-cc">-->
-<!--                      <div>-->
-<!--                          <button type="button" class="btn btn-secondary" >🔊 Question</button>-->
-<!--                          <button type="button" class="btn btn-success" style="margin-left: 20px" id="btn">🎙 Answer</button>-->
-<!--                          <button type="button" class="btn btn-primary" style="margin-left: 20px" id="submit">👉 Submit</button>-->
-<!--                      </div>-->
-<!--                      <div>-->
-<!--                          <label class="form-label" style="color: white" id="lblQuestion">1)What is Networks?</label>-->
-<!--                      </div>-->
-<!--                      <div>-->
-<!--                          <input class="form-control " id="txtareaUserAnswer" placeholder="Type here answer..." style="width: 500px">-->
-<!--                          <label for="txtareaUserAnswer"></label>-->
-<!--                      </div>-->
-<!--                  </div>-->
-                  <!-- first page main container content - image-->
-<!--                  <div class="fp-con-cnt-avtr">-->
-<!--                      <img src="assets/pictures/avatar.png" alt="personal image">-->
-<!--                  </div>-->
-<!--                  &lt;!&ndash; first page main container content - senetences&ndash;&gt;-->
-<!--                  <div class="fp-con-cnt-sents">-->
-<!--                      <p>I'm</p>-->
-<!--                      <p>Kaligu</p>-->
-<!--                      <p>Jayanath.</p>-->
-<!--                      <p>Software Developer</p>-->
-<!--                      <p>@Software Engineering student - IJSE</p>-->
-<!--                  </div>-->
-              </div>
-          </div>
-      </section>
-  </main>
-<!--&lt;!&ndash;first page &ndash;&gt;-->
-<!--<section class="fp">-->
-<!--    <div>-->
-<!--        <button type="button" class="btn">Start</button>-->
-<!--        <label>-->
-<!--            <textarea class="tetxarea"></textarea>-->
-<!--        </label>-->
-<!--    </div>-->
-<!--</section>-->
+<!--&lt;!&ndash;                  <div class="fp-con-cnt-cc">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <button type="button" class="btn btn-secondary" id="questionbtn">🔊 Question</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <button type="button" class="btn btn-success" style="margin-left: 20px" id="btn">🎙 Answer</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <button type="button" class="btn btn-primary" style="margin-left: 20px" id="submit">👉 Submit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <label class="form-label" style="color: white" id="lblQuestion">1)What is Networks?</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <label class="form-label" style="color: red" id="lblCountofAnswers">0</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <input class="form-control " id="txtareaUserAnswer" placeholder="Type here answer..." style="width: 500px">&ndash;&gt;-->
+<!--&lt;!&ndash;                          <label for="txtareaUserAnswer"></label>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                          <label class="txtareaUserAnswerlbl">cat go</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--                  &lt;!&ndash; first page main container content - image&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="fp-con-cnt-avtr">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <img src="assets/pictures/avatar.png" alt="personal image">&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                  &lt;!&ndash; first page main container content - senetences&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="fp-con-cnt-sents">&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p>I'm</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p>Kaligu</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p>Jayanath.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p>Software Developer</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                      <p>@Software Engineering student - IJSE</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--              </div>-->
+<!--          </div>-->
+<!--      </section>-->
+<!--  </main>-->
+<!--&lt;!&ndash;&lt;!&ndash;first page &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<section class="fp">&ndash;&gt;-->
+<!--&lt;!&ndash;    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <button type="button" class="btn">Start</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        <label>&ndash;&gt;-->
+<!--&lt;!&ndash;            <textarea class="tetxarea"></textarea>&ndash;&gt;-->
+<!--&lt;!&ndash;        </label>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</section>&ndash;&gt;-->
 
 
 
 <script src="assets/js/jquery-3.6.4.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
