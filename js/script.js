@@ -2,12 +2,11 @@
 var quizObjList = [];
 
 //      Object
-function Quiz(id, question, correctAnswer, correctAnswerSyntaxes, correctAnswerSyntaxesCount , link1 , link2 , userAnswer, userAnswerMarks) {
+function Quiz(id, question, correctAnswer, correctAnswerSyntaxes , link1 , link2 , userAnswer, userAnswerMarks) {
     var __id = id;
     var __question = question;
     var __correctAnswer = correctAnswer;
     var __correctAnswerSyntaxes = correctAnswerSyntaxes;
-    var __correctAnswerSyntaxesCount = correctAnswerSyntaxesCount;
     var __link1 = link1;
     var __link2 = link2;
     var __userAnswer = userAnswer;
@@ -25,9 +24,6 @@ function Quiz(id, question, correctAnswer, correctAnswerSyntaxes, correctAnswerS
     }
     this.getCorrectAnswerSyntaxes = function () {
         return __correctAnswerSyntaxes;
-    }
-    this.getCorrectAnswerSyntaxesCount = function () {
-        return __correctAnswerSyntaxesCount;
     }
     this.getUserAnswer = function () {
         return __userAnswer;
@@ -54,9 +50,6 @@ function Quiz(id, question, correctAnswer, correctAnswerSyntaxes, correctAnswerS
     this.setCorrectAnswerSyntaxes = function (newcorrectAnswerSyntaxes) {
         __correctAnswerSyntaxes = newcorrectAnswerSyntaxes;
     }
-    this.setCorrectAnswerSyntaxesCount = function (newcorrectAnswerSyntaxesCount) {
-        __correctAnswerSyntaxesCount = newcorrectAnswerSyntaxesCount;
-    }
     this.setUserAnswer = function (newuserAnswer) {
         __userAnswer = newuserAnswer;
     }
@@ -76,10 +69,10 @@ function Quiz(id, question, correctAnswer, correctAnswerSyntaxes, correctAnswerS
 
 
 //      Database Initialise
-let quiz1 = new Quiz(1, 'What is your pet?', 'dog', 'kiri laki',2 , 'https://kaligu.github.io/MyProfile/','', '',  0);
+let quiz1 = new Quiz(1, 'What is API?', '😊API is a program designed to communicate between two components.😊The Internet is not a must.😊API(A-Application__some application , P-programming__code ,I-interface__comminunicate between two components', ['program', 'communicate between two components'] , '','', '',  0);
 quizObjList.push(quiz1);
 
-let quiz2 = new Quiz(2, 'What is your car?', 'toyota', 'toyota hilux',2 , '', '','',0);
+let quiz2 = new Quiz(2, 'What is Web API?', '😊Web API is a subset of API Superset.😊Web API is a program designed to communicate between two components by the internet', ['subset','program', 'communicate between two components','internet'] , '', '','',0);
 quizObjList.push(quiz2);
 
 
@@ -90,6 +83,7 @@ quizObjList.push(quiz2);
 // Generate the HTML code
 let htmlCode = "";
 const recognitions = []; // Array to store recognition instances
+const speechs = []; //Array to storw speech instances
 
 quizObjList.forEach((quiz, index) => {
     const htmlElement = $(`
@@ -100,24 +94,24 @@ quizObjList.forEach((quiz, index) => {
                     <button type="button" class="btn btn-success" style="margin-left: 5px" id="tellBtn${index + 1}"><i class="bi bi-mic"></i> Tell A.</button>
                     <br><br>
                     <h5 class="card-title" style="color: white">${index + 1}) ${quiz.getQuestion()}</h5>
-                    <textarea class="form-control bg-dark" placeholder="Type Answer here..." id="userAnswertxtarea${index + 1}" style="color: white"></textarea>
+                    <textarea class="form-control bg-dark" placeholder="Type Answer here..." id="userAnswertxtarea${index + 1}" style="color: white; height:140px"></textarea>
                     <label for="userAnswertxtarea${index + 1}" style="color: white">Your Answer</label>
                     <p class="card-text"></p>
                     
                     <button type="button" class="btn btn-danger btn-lg" id="sendBtn${index + 1}" style="display: block; margin-left: 50%"><i class="bi bi-send-fill"></i></button>
                     
                     <button type="button" class="btn btn-danger btn-lg" id="markBtn${index + 1}" style="display: none; margin-left: 50%">0/0</button>
-                    <p class="card-text" style="color: #c84848; display: none;" id="correctsyntaxestxtarea${index + 1}">syntaxes</p>
+                    <p class="card-text" style="color: #ffbcbc; display: none;" id="correctsyntaxestxtarea${index + 1}">syntaxes</p>
                     <button type="button" class="btn btn-warning btn-lg" id="retryBtn${index + 1}" style="display: none; margin-left: 50%;  margin-top: 10px" ><i class="bi bi-arrow-counterclockwise"></i></button>
                 </div>
                 <div class="card-footer text-body-secondary" style="background-color: rgba(121,121,121,0.91); display: none " id="card-footer-answers-body${index + 1}">
                     <div class="form-floating bg-dark">
-                        <input readonly type="email" class="form-control" id="realQfootertxt${index + 1}" placeholder="name@example.com" value="mdo@example.com" style="color: white; background-color: #2f2f2f">
+                        <textarea readonly type="email" class="form-control" id="realQfootertxt${index + 1}" style="color: white; background-color: #2f2f2f; height:100px"></textarea>
                         <label for="realQfootertxt${index + 1}" style="color: #858585">Q.</label>
                     </div>
                     <div class="form-floating bg-dark">
-                        <input readonly type="email" class="form-control" id="realAfootertxt${index + 1}" placeholder="name@example.com" value="mdo@example.com" style="color: white; background-color: #2f2f2f">
-                        <label for="realAfootertxt${index + 1}" style="color: #858585">Q.</label>
+                        <textarea readonly type="email" class="form-control" id="realAfootertxt${index + 1}" style="color: white; background-color: #2f2f2f; height:140px"></textarea>
+                        <label for="realAfootertxt${index + 1}" style="color: #858585">A.</label>
                     </div>
                      <p><a class="link-offset-2" href="${quiz.getLink1()}" target="_blank" style="color: #001e97">${quiz.getLink1()}</a></p>
                      <p><a class="link-offset-2" href="${quiz.getLink2()}" target="_blank" style="color: #001e97">${quiz.getLink2()}</a></p>
@@ -132,22 +126,19 @@ quizObjList.forEach((quiz, index) => {
         // Handle submit button click action for this element
         console.log("quiz.getQuestion()");
 
-        const speakButton = htmlElement.find(`#speakBtn${index + 1}`);
-
         // Set button text to "Speaking"
-        speakButton.text('Speaking... Q.');
-        speakButton.prop('disabled', true);
+        htmlElement.find(`#speakBtn${index + 1}`).text('Speaking... Q.');
+        htmlElement.find(`#speakBtn${index + 1}`).prop('disabled', true);
 
-        const speech = new SpeechSynthesisUtterance(quiz.getQuestion());
+        speechs[index+1] = new SpeechSynthesisUtterance(quiz.getQuestion());
 
-        speech.addEventListener('end', () => {
+        speechs[index+1].addEventListener('end', () => {
             // Set button text back to "Speak Q." after speaking is finished
-            speakButton.text('Speak Q.');
-            speakButton.prop('disabled', false);
+            htmlElement.find(`#speakBtn${index + 1}`).text('Speak Q.');
+            htmlElement.find(`#speakBtn${index + 1}`).prop('disabled', false);
         });
 
-        speechSynthesis.speak(speech);
-        console.log("quiz.getQuestion()");
+        speechSynthesis.speak(speechs[index+1]);
     });
 
 
@@ -167,7 +158,7 @@ quizObjList.forEach((quiz, index) => {
         htmlElement.find(`#tellBtn${index + 1}`).text('Recording Ended.');
         setTimeout(() => {
             htmlElement.find(`#tellBtn${index + 1}`).text('🎙 Answer');
-        }, 5000);
+        }, 1000);
     };
     recognitions[index].onerror = () => {
         htmlElement.find(`#tellBtn${index + 1}`).text('Some error occurred! Try again.');
@@ -194,6 +185,11 @@ quizObjList.forEach((quiz, index) => {
         htmlElement.find(`#correctsyntaxestxtarea${index + 1}`).css('display', 'block');
         htmlElement.find(`#retryBtn${index + 1}`).css('display', 'block');
         htmlElement.find(`#sendBtn${index + 1}`).css('display', 'none');
+
+        htmlElement.find(`#userAnswertxtarea${index + 1}`).prop('disabled', true);
+        htmlElement.find(`#speakBtn${index + 1}`).prop('disabled', true);
+        htmlElement.find(`#tellBtn${index + 1}`).prop('disabled', true);
+
     });
 
 // Function to count the occurrences of a substring in an array of strings
@@ -204,7 +200,7 @@ quizObjList.forEach((quiz, index) => {
                 count++;
             }
         }
-        count = count+"/"+quiz.getCorrectAnswerSyntaxesCount();
+        count = count+"/"+array.length;
         return count;
     }
 
@@ -216,6 +212,10 @@ quizObjList.forEach((quiz, index) => {
         htmlElement.find(`#sendBtn${index + 1}`).css('display', 'block');
 
         htmlElement.find(`#userAnswertxtarea${index + 1}`).val("");
+
+        htmlElement.find(`#userAnswertxtarea${index + 1}`).prop('disabled', false);
+        htmlElement.find(`#speakBtn${index + 1}`).prop('disabled', false);
+        htmlElement.find(`#tellBtn${index + 1}`).prop('disabled', false);
     });
 
 
@@ -225,26 +225,6 @@ quizObjList.forEach((quiz, index) => {
 
 });
 
-// Output the generated HTML code
-
-// <div className="fp-con-cnt-cc">
-//     <div>
-//         <button type="button" className="btn btn-secondary">🔊 Question</button>
-//         <button type="button" className="btn btn-success" style="margin-left: 20px" id="answerbtn${index + 1}">🎙
-//             Answer
-//         </button>
-//         <button type="button" className="btn btn-primary" style="margin-left: 20px" id="submit${index + 1}">👉 Submit
-//         </button>
-//     </div>
-//     <div>
-//         <label className="form-label" style="color: white" id="lblQuestion">${index + 1}) ${quiz.getQuestion()}</label>
-//     </div>
-//     <div>
-//         <input className="form-control" id="txtareaUserAnswer${index + 1}" placeholder="Type here answer..."
-//                style="width: 500px">
-//             <label htmlFor="txtareaUserAnswer${index + 1}"></label>
-//     </div>
-// </div>
 
 
 
