@@ -129,6 +129,8 @@ function speakQuestion(index) {
     speechSynthesis.speak(speechsQuises);
 
     speechsQuises.addEventListener('end', () => {
+        $('#first_page-reading-btn').text('Speak Start');
+        $('#first_page-reading-btn').prop('disabled', false);
         setTimeout(() => {
             if (isSpeaking) {
                 speakQuestion(index + 1);
@@ -140,13 +142,13 @@ function speakQuestion(index) {
 $('#first_page-reading-btn').on('click', () => {
     if (!isSpeaking) {
         // Set button text to "Speaking"
-        $('#first_page-reading-btn').text('Speaking... Q.');
+        $('#first_page-reading-btn').text('Speaking... ');
         $('#first_page-reading-btn').prop('disabled', true);
         isSpeaking = true;
         speakQuestion(currentQuestionIndex);
     } else {
         // Set button text back to "Speak Q." if already speaking
-        $('#first_page-reading-btn').text('Speak Q.');
+        $('#first_page-reading-btn').text('Speak Start');
         $('#first_page-reading-btn').prop('disabled', false);
         isSpeaking = false;
         speechSynthesis.cancel(); // Stop speaking
@@ -157,6 +159,8 @@ $('#first_page-back-btn').on('click', () => {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
         if (isSpeaking) {
+            $('#first_page-reading-btn').text('Speak Start');
+            $('#first_page-reading-btn').prop('disabled', false);
             speechSynthesis.cancel(); // Stop speaking
             speakQuestion(currentQuestionIndex);
         }
