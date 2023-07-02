@@ -69,15 +69,20 @@ function Quiz(id, question, correctAnswer, correctAnswerSyntaxes , link1 , link2
 
 
 //      Database Initialise
+
 let quiz1 = new Quiz(1, 'What is API?', '' +
     '😊API is a program designed to communicate between two components.' +
     '\n😊The Internet is not a must.' +
-    '\n😊API(A-Application__some application , P-programming__code ,I-interface__comminunicate between two components', ['program', 'communicate between two components'] , '','', '',  0);
+    '\n😊API(A-Application__some application , P-programming__code ,I-interface__comminunicate between two components',
+    ['program', 'communicate between two components']
+    , '','', '',  0);
 quizObjList.push(quiz1);
 
 let quiz2 = new Quiz(2, 'What is Web API?', '' +
     '\n😊Web API is a subset of API Superset.' +
-    '\n😊Web API is a program designed to communicate between two components by the internet', ['subset','program', 'communicate between two components','internet'] , '', '','',0);
+    '\n😊Web API is a program designed to communicate between two components by the internet',
+    ['subset','program', 'communicate between two components','internet']
+    , '', '','',0);
 quizObjList.push(quiz2);
 
 
@@ -99,14 +104,14 @@ quizObjList.forEach((quiz, index) => {
                     <button type="button" class="btn btn-success" style="margin-left: 5px" id="tellBtn${index + 1}"><i class="bi bi-mic"></i> Tell A.</button>
                     <br><br>
                     <h5 class="card-title" style="color: white">${index + 1}) ${quiz.getQuestion()}</h5>
-                    <textarea class="form-control bg-dark" placeholder="Type Answer here..." id="userAnswertxtarea${index + 1}" style="color: white; height:140px"></textarea>
+                    <textarea class="form-control bg-dark" placeholder="Type Answer here..." id="userAnswertxtarea${index + 1}" style="color: white; height:145px"></textarea>
                     <label for="userAnswertxtarea${index + 1}" style="color: white">Your Answer</label>
                     <p class="card-text"></p>
                     
                     <button type="button" class="btn btn-danger btn-lg" id="sendBtn${index + 1}" style="display: block; margin-left: 50%"><i class="bi bi-send-fill"></i></button>
                     
                     <button type="button" class="btn btn-danger btn-lg" id="markBtn${index + 1}" style="display: none; margin-left: 50%">0/0</button>
-                    <p class="card-text" style="color: #ffbcbc; display: none;" id="correctsyntaxestxtarea${index + 1}">syntaxes</p>
+                    <p class="card-text" style="color: #c5ffa4; display: none;" id="correctsyntaxestxtarea${index + 1}">syntaxes</p>
                     <button type="button" class="btn btn-warning btn-lg" id="retryBtn${index + 1}" style="display: none; margin-left: 50%;  margin-top: 10px" ><i class="bi bi-arrow-counterclockwise"></i></button>
                 </div>
                 <div class="card-footer text-body-secondary" style="background-color: rgba(121,121,121,0.91); display: none " id="card-footer-answers-body${index + 1}">
@@ -115,7 +120,7 @@ quizObjList.forEach((quiz, index) => {
                         <label for="realQfootertxt${index + 1}" style="color: #858585">Q.</label>
                     </div>
                     <div class="form-floating bg-dark">
-                        <textarea readonly type="email" class="form-control" id="realAfootertxt${index + 1}" style="color: white; background-color: #2f2f2f; height:140px"></textarea>
+                        <textarea readonly type="email" class="form-control" id="realAfootertxt${index + 1}" style="color: white; background-color: #2f2f2f; height:150px"></textarea>
                         <label for="realAfootertxt${index + 1}" style="color: #858585">A.</label>
                     </div>
                      <p><a class="link-offset-2" href="${quiz.getLink1()}" target="_blank" style="color: #001e97">${quiz.getLink1()}</a></p>
