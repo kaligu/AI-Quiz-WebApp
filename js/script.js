@@ -69,10 +69,15 @@ function Quiz(id, question, correctAnswer, correctAnswerSyntaxes , link1 , link2
 
 
 //      Database Initialise
-let quiz1 = new Quiz(1, 'What is API?', '😊API is a program designed to communicate between two components.😊The Internet is not a must.😊API(A-Application__some application , P-programming__code ,I-interface__comminunicate between two components', ['program', 'communicate between two components'] , '','', '',  0);
+let quiz1 = new Quiz(1, 'What is API?', '' +
+    '😊API is a program designed to communicate between two components.' +
+    '\n😊The Internet is not a must.' +
+    '\n😊API(A-Application__some application , P-programming__code ,I-interface__comminunicate between two components', ['program', 'communicate between two components'] , '','', '',  0);
 quizObjList.push(quiz1);
 
-let quiz2 = new Quiz(2, 'What is Web API?', '😊Web API is a subset of API Superset.😊Web API is a program designed to communicate between two components by the internet', ['subset','program', 'communicate between two components','internet'] , '', '','',0);
+let quiz2 = new Quiz(2, 'What is Web API?', '' +
+    '\n😊Web API is a subset of API Superset.' +
+    '\n😊Web API is a program designed to communicate between two components by the internet', ['subset','program', 'communicate between two components','internet'] , '', '','',0);
 quizObjList.push(quiz2);
 
 
@@ -171,10 +176,20 @@ quizObjList.forEach((quiz, index) => {
         recognitions[index].start();
     });
 
+    // function highlight_word(searchpara) {
+    //     var text = "to";
+    //     if (text) {
+    //         var pattern = new RegExp("(" + text + ")", "gi");
+    //         htmlElement.find(`#realAfootertxt${index + 1}`).innerHTML = searchpara.replace(pattern, "<span style='background-color: yellow'>" + text + "</span>");
+    //     }
+    // }
+
 
     // Load answers into the footer of the card
     htmlElement.find(`#sendBtn${index + 1}`).on('click', () => {
-        htmlElement.find(`#markBtn${index + 1}`).text(countSubstringOccurrencesInArray(quiz.getCorrectAnswerSyntaxes(), $(`#userAnswertxtarea${index + 1}`).val()));
+
+
+        htmlElement.find(`#markBtn${index + 1}`).text(countSubstringOccurrencesInArray(quiz.getCorrectAnswerSyntaxes(), $(`#userAnswertxtarea${index + 1}`).val())+"%");
 
         htmlElement.find(`#correctsyntaxestxtarea${index + 1}`).text(quiz.getCorrectAnswerSyntaxes());
         htmlElement.find(`#realQfootertxt${index + 1}`).val(quiz.getQuestion());
@@ -189,7 +204,7 @@ quizObjList.forEach((quiz, index) => {
         htmlElement.find(`#userAnswertxtarea${index + 1}`).prop('disabled', true);
         htmlElement.find(`#speakBtn${index + 1}`).prop('disabled', true);
         htmlElement.find(`#tellBtn${index + 1}`).prop('disabled', true);
-
+        // highlight_word(htmlElement.find(`#realAfootertxt${index + 1}`).innerHTML); //highlight correct answer syntaxes in the correct answer
     });
 
 // Function to count the occurrences of a substring in an array of strings
@@ -200,7 +215,7 @@ quizObjList.forEach((quiz, index) => {
                 count++;
             }
         }
-        count = count+"/"+array.length;
+        count = (count / array.length) * 100;
         return count;
     }
 

@@ -13,6 +13,17 @@ body{
     background-size: cover;
 
 }
+
+#search_para
+{
+    color:grey;
+}
+.highlight
+{
+    color:blue;
+    text-decoration:underline;
+}
+
 /*#card-body-marks{*/
 /*    display: none;*/
 /*}*/
