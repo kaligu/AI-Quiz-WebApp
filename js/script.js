@@ -70,25 +70,33 @@ function Quiz(id, question, correctAnswer, correctAnswerSyntaxes , link1 , link2
 
 //      Database Initialise
 
-let quizAAD1 = new Quiz(1, 'What is JCP?', '' +
-    'The Java Community Process (JCP) is a mechanism to develop standard technical specifications for Java technology.' +
-    '\nJCP members can give reviews, requests, and feedback to the JSR Expert group on Java platform changes using the JSR proposal.' +
-    '\nAnyone can become a JCP member by filling out a form available on the JCP website.',
+let quizAAD1 = new Quiz(1, 'What is JCP?', 'JCP stands for Java Commiunity Process.' +
+    '\n\nJCP is a mechanism to develop standard technical specifications for Java technology.' +
+    '\n\nJCP members can give reviews, requests, and feedback to the JSR Expert group on Java platform changes using the JSR proposal.' +
+    '\n\nAnyone can become a JCP member by filling out a form available on the JCP website.',
     ['specifications', 'JSR Expert group','JCP member']
     , 'https://www.jcp.org/en/home/index','', '',  0);
 quizObjListAAD.push(quizAAD1);
 
-let quizAAD100 = new Quiz(1, 'What is API?', '' +
+let quizAAD2 = new Quiz(1, 'What is JSR?',
+    'JSR stands for Java Specification Request.' +
+    '\n\nJSRs are basically a proposal for a specific change or addition requests for the Java language, libraries and other components.' +
+    '\n\nA group of experts was formed to develop and review JSRs.',
+    ['Java Specification Request', 'JSR Expert group','JCP member']
+    , '','', '',  0);
+quizObjListAAD.push(quizAAD2);
+
+let quizAAD100 = new Quiz(1, 'What is API?',
     'API is a program designed to communicate between two components.' +
-    '\nThe Internet is not a must.' +
-    '\nAPI(A-Application-A is some application , P-Program-P is programming-code ,I-interface-I is comminunicate between two components',
+    '\n\nThe Internet is not a must.' +
+    '\n\nAPI(A-Application-A is some application , P-Program-P is programming-code ,I-interface-I is comminunicate between two components',
     ['program', 'communicate between two components']
     , '','', '',  0);
 quizObjListAAD.push(quizAAD100);
 
-let quizAAD101 = new Quiz(2, 'What is Web API?', '' +
-    '\nWeb API is a subset of API Superset.' +
-    '\nWeb API is a program designed to communicate between two components by the internet',
+let quizAAD101 = new Quiz(2, 'What is Web API?',
+    'Web API is a subset of API Superset.' +
+    '\n\nWeb API is a program designed to communicate between two components by the internet',
     ['subset','program', 'communicate between two components','internet']
     , '', '','',0);
 quizObjListAAD.push(quizAAD101);
@@ -194,14 +202,14 @@ const speechs = []; //Array to storw speech instances
 
 quizObjListAAD.forEach((quiz, index) => {
     const htmlElement = $(`
-        <div class="col-xl-6 col-lg-6">
+        <div class="col-xl-12 col-lg-12">
             <div class="card text-center" style="background-color: rgba(43,76,43,0.96); margin-top: 20px; border-radius: 5px">
                 <div class="card-body ">
                     <button type="button" class="btn btn-secondary speakBtn" id="speakBtn${index + 1}">Speak Q.</button>
                     <button type="button" class="btn btn-success" style="margin-left: 5px" id="tellBtn${index + 1}"><i class="bi bi-mic"></i> Tell A.</button>
                     <br><br>
                     <h5 class="card-title" style="color: white">${index + 1}) ${quiz.getQuestion()}</h5>
-                    <textarea class="form-control bg-dark" placeholder="Type Answer here..." id="userAnswertxtarea${index + 1}" style="color: white; height:150px"></textarea>
+                    <textarea class="form-control bg-dark" placeholder="Type Answer here..." id="userAnswertxtarea${index + 1}" style="color: white; height:170px"></textarea>
                     <label for="userAnswertxtarea${index + 1}" style="color: white">Your Answer</label>
                     <p class="card-text"></p>
                     
@@ -217,7 +225,7 @@ quizObjListAAD.forEach((quiz, index) => {
                         <label for="realQfootertxt${index + 1}" style="color: #858585">Q.</label>
                     </div>
                     <div class="form-floating bg-dark">
-                        <textarea readonly type="email" class="form-control" id="realAfootertxt${index + 1}" style="color: white; background-color: #2f2f2f; height:160px"></textarea>
+                        <textarea readonly type="email" class="form-control" id="realAfootertxt${index + 1}" style="color: white; background-color: #2f2f2f; height:190px"></textarea>
                         <label for="realAfootertxt${index + 1}" style="color: #858585">A.</label>
                     </div>
                      <p><a class="link-offset-2" href="${quiz.getLink1()}" target="_blank" style="color: #001e97">${quiz.getLink1()}</a></p>
