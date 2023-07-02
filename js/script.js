@@ -71,24 +71,24 @@ function Quiz(id, question, correctAnswer, correctAnswerSyntaxes , link1 , link2
 //      Database Initialise
 
 let quizAAD1 = new Quiz(1, 'What is JCP?', '' +
-    '😊The Java Community Process (JCP) is a mechanism to develop standard technical specifications for Java technology.' +
-    '\n😊JCP members can give reviews, requests, and feedback to the JSR Expert group on Java platform changes using the JSR proposal.' +
-    '\n😊Anyone can become a JCP member by filling out a form available on the JCP website.',
+    'The Java Community Process (JCP) is a mechanism to develop standard technical specifications for Java technology.' +
+    '\nJCP members can give reviews, requests, and feedback to the JSR Expert group on Java platform changes using the JSR proposal.' +
+    '\nAnyone can become a JCP member by filling out a form available on the JCP website.',
     ['specifications', 'JSR Expert group','JCP member']
     , 'https://www.jcp.org/en/home/index','', '',  0);
 quizObjListAAD.push(quizAAD1);
 
-let quizAAD100 = new Quiz(1, 'What is JCP?', '' +
-    '😊API is a program designed to communicate between two components.' +
-    '\n😊The Internet is not a must.' +
-    '\n😊API(A-Application__some application , P-programming__code ,I-interface__comminunicate between two components',
+let quizAAD100 = new Quiz(1, 'What is API?', '' +
+    'API is a program designed to communicate between two components.' +
+    '\nThe Internet is not a must.' +
+    '\nAPI(A-Application-A is some application , P-Program-P is programming-code ,I-interface-I is comminunicate between two components',
     ['program', 'communicate between two components']
     , '','', '',  0);
 quizObjListAAD.push(quizAAD100);
 
 let quizAAD101 = new Quiz(2, 'What is Web API?', '' +
-    '\n😊Web API is a subset of API Superset.' +
-    '\n😊Web API is a program designed to communicate between two components by the internet',
+    '\nWeb API is a subset of API Superset.' +
+    '\nWeb API is a program designed to communicate between two components by the internet',
     ['subset','program', 'communicate between two components','internet']
     , '', '','',0);
 quizObjListAAD.push(quizAAD101);
@@ -97,7 +97,92 @@ quizObjListAAD.push(quizAAD101);
 
 $(`#nav-item-AAD-button`).on('click', () => {
     $(`#AAD-Question_page`).css('display', 'block');
+
+    $(`#first_page`).css('display', 'none');
 });
+
+// Speak text
+let speechtext = '';
+let count = 1;
+for (const quizobj of quizObjListAAD) {
+    speechtext += 'Question ' + count;
+    speechtext += quizobj.getQuestion();
+    speechtext += 'Answer is';
+    speechtext += quizobj.getCorrectAnswer();
+    count++;
+}
+
+let currentQuestionIndex = 0;
+let isSpeaking = false;
+let speechsQuises = null;
+
+function speakQuestion(index) {
+    if (index >= quizObjListAAD.length) {
+        isSpeaking = false;
+        return;
+    }
+
+    const question = speechtext.split('Question ')[index + 1]; // Skip the first empty item
+
+    speechsQuises = new SpeechSynthesisUtterance();
+    speechsQuises.text = 'Question ' + question;
+    speechSynthesis.speak(speechsQuises);
+
+    speechsQuises.addEventListener('end', () => {
+        setTimeout(() => {
+            if (isSpeaking) {
+                speakQuestion(index + 1);
+            }
+        }, 2000); // Adjust the delay as needed (in milliseconds)
+    });
+}
+
+$('#first_page-reading-btn').on('click', () => {
+    if (!isSpeaking) {
+        // Set button text to "Speaking"
+        $('#first_page-reading-btn').text('Speaking... Q.');
+        $('#first_page-reading-btn').prop('disabled', true);
+        isSpeaking = true;
+        speakQuestion(currentQuestionIndex);
+    } else {
+        // Set button text back to "Speak Q." if already speaking
+        $('#first_page-reading-btn').text('Speak Q.');
+        $('#first_page-reading-btn').prop('disabled', false);
+        isSpeaking = false;
+        speechSynthesis.cancel(); // Stop speaking
+    }
+});
+
+$('#first_page-back-btn').on('click', () => {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        if (isSpeaking) {
+            speechSynthesis.cancel(); // Stop speaking
+            speakQuestion(currentQuestionIndex);
+        }
+    }
+});
+
+$('#first_page-next-btn').on('click', () => {
+    if (currentQuestionIndex < quizObjListAAD.length - 1) {
+        currentQuestionIndex++;
+        if (isSpeaking) {
+            speechSynthesis.cancel(); // Stop speaking
+            speakQuestion(currentQuestionIndex);
+        }
+    }
+});
+
+$('#first_page-stop-btn').on('click', () => {
+    if (isSpeaking) {
+        isSpeaking = false;
+        speechSynthesis.cancel(); // Stop speaking
+    }
+});
+
+
+
+
 
 
 // Generate the HTML code
