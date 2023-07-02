@@ -86,6 +86,7 @@ let quiz2 = new Quiz(2, 'What is Web API?', '' +
 quizObjList.push(quiz2);
 
 
+
 $(`#nav-item-AAD-button`).on('click', () => {
     loadAADCards();
 });
