@@ -82,9 +82,15 @@ let quizAAD2 = new Quiz(1, 'What is JSR?',
     'JSR stands for Java Specification Request.' +
     '\n\nJSRs are basically a proposal for a specific change or addition requests for the Java language, libraries and other components.' +
     '\n\nA group of experts was formed to develop and review JSRs.',
-    ['Java Specification Request', 'JSR Expert group','JCP member']
+    ['Java Specification Request', 'proposal','group of experts']
     , '','', '',  0);
 quizObjListAAD.push(quizAAD2);
+
+let quizAAD3 = new Quiz(1, 'What is Specification?',
+    'The specification is a detailed document of the implementation of some technology or feature',
+    ['detailedt', 'document']
+    , '','', '',  0);
+quizObjListAAD.push(quizAAD3);
 
 let quizAAD100 = new Quiz(1, 'What is API?',
     'API is a program designed to communicate between two components.' +
