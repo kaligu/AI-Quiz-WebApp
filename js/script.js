@@ -143,6 +143,7 @@ function speakQuestion(index) {
 }
 
 $('#first_page-reading-btn').on('click', () => {
+    currentQuestionIndex = 0;
     if (!isSpeaking) {
         // Set button text to "Speaking"
         $('#first_page-reading-btn').text('Speaking... ');
