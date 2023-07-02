@@ -1,5 +1,5 @@
 //      Database
-var quizObjList = [];
+var quizObjListAAD = [];
 
 //      Object
 function Quiz(id, question, correctAnswer, correctAnswerSyntaxes , link1 , link2 , userAnswer, userAnswerMarks) {
@@ -76,14 +76,14 @@ let quiz1 = new Quiz(1, 'What is API?', '' +
     '\n😊API(A-Application__some application , P-programming__code ,I-interface__comminunicate between two components',
     ['program', 'communicate between two components']
     , '','', '',  0);
-quizObjList.push(quiz1);
+quizObjListAAD.push(quiz1);
 
 let quiz2 = new Quiz(2, 'What is Web API?', '' +
     '\n😊Web API is a subset of API Superset.' +
     '\n😊Web API is a program designed to communicate between two components by the internet',
     ['subset','program', 'communicate between two components','internet']
     , '', '','',0);
-quizObjList.push(quiz2);
+quizObjListAAD.push(quiz2);
 
 
 
@@ -92,16 +92,12 @@ $(`#nav-item-AAD-button`).on('click', () => {
 });
 
 
-loadAADCards();
-
-function loadAADCards() {
-
 // Generate the HTML code
 let htmlCode = "";
 const recognitions = []; // Array to store recognition instances
 const speechs = []; //Array to storw speech instances
 
-quizObjList.forEach((quiz, index) => {
+quizObjListAAD.forEach((quiz, index) => {
     const htmlElement = $(`
         <div class="col-xl-6 col-lg-6">
             <div class="card text-center" style="background-color: rgba(43,76,43,0.96); margin-top: 20px; border-radius: 5px">
@@ -243,15 +239,10 @@ quizObjList.forEach((quiz, index) => {
         htmlElement.find(`#speakBtn${index + 1}`).prop('disabled', false);
         htmlElement.find(`#tellBtn${index + 1}`).prop('disabled', false);
     });
-
-
     // Append the HTML element to the desired container
     htmlElement.appendTo('#CNS-CardHolder');
-
-
 });
 
-}
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -365,7 +356,7 @@ quizObjList.forEach((quiz, index) => {
 // let htmlCode = "";
 // const recognitions = []; // Array to store recognition instances
 //
-// quizObjList.forEach((quiz, index) => {
+// quizObjListAAD.forEach((quiz, index) => {
 //     const htmlElement = $(`
 //     <div class="fp-con-cnt-cc">
 //       <div>
