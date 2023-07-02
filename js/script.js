@@ -201,7 +201,7 @@ quizObjListAAD.forEach((quiz, index) => {
                     <button type="button" class="btn btn-success" style="margin-left: 5px" id="tellBtn${index + 1}"><i class="bi bi-mic"></i> Tell A.</button>
                     <br><br>
                     <h5 class="card-title" style="color: white">${index + 1}) ${quiz.getQuestion()}</h5>
-                    <textarea class="form-control bg-dark" placeholder="Type Answer here..." id="userAnswertxtarea${index + 1}" style="color: white; height:145px"></textarea>
+                    <textarea class="form-control bg-dark" placeholder="Type Answer here..." id="userAnswertxtarea${index + 1}" style="color: white; height:150px"></textarea>
                     <label for="userAnswertxtarea${index + 1}" style="color: white">Your Answer</label>
                     <p class="card-text"></p>
                     
@@ -217,7 +217,7 @@ quizObjListAAD.forEach((quiz, index) => {
                         <label for="realQfootertxt${index + 1}" style="color: #858585">Q.</label>
                     </div>
                     <div class="form-floating bg-dark">
-                        <textarea readonly type="email" class="form-control" id="realAfootertxt${index + 1}" style="color: white; background-color: #2f2f2f; height:150px"></textarea>
+                        <textarea readonly type="email" class="form-control" id="realAfootertxt${index + 1}" style="color: white; background-color: #2f2f2f; height:160px"></textarea>
                         <label for="realAfootertxt${index + 1}" style="color: #858585">A.</label>
                     </div>
                      <p><a class="link-offset-2" href="${quiz.getLink1()}" target="_blank" style="color: #001e97">${quiz.getLink1()}</a></p>
