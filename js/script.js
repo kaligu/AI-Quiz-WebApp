@@ -88,9 +88,11 @@ quizObjList.push(quiz2);
 
 
 $(`#nav-item-AAD-button`).on('click', () => {
-    loadAADCards();
+    $(`#AAD-Question_page`).css('display', 'block');
 });
 
+
+loadAADCards();
 
 function loadAADCards() {
 
