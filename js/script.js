@@ -86,9 +86,12 @@ let quiz2 = new Quiz(2, 'What is Web API?', '' +
 quizObjList.push(quiz2);
 
 
+$(`#nav-item-AAD-button`).on('click', () => {
+    loadAADCards();
+});
 
 
-
+function loadAADCards() {
 
 // Generate the HTML code
 let htmlCode = "";
@@ -245,7 +248,7 @@ quizObjList.forEach((quiz, index) => {
 
 });
 
-
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////
