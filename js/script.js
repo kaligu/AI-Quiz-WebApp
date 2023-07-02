@@ -70,20 +70,28 @@ function Quiz(id, question, correctAnswer, correctAnswerSyntaxes , link1 , link2
 
 //      Database Initialise
 
-let quiz1 = new Quiz(1, 'What is API?', '' +
+let quizAAD1 = new Quiz(1, 'What is JCP?', '' +
+    '😊The Java Community Process (JCP) is a mechanism to develop standard technical specifications for Java technology.' +
+    '\n😊JCP members can give reviews, requests, and feedback to the JSR Expert group on Java platform changes using the JSR proposal.' +
+    '\n😊Anyone can become a JCP member by filling out a form available on the JCP website.',
+    ['specifications', 'JSR Expert group','JCP member']
+    , 'https://www.jcp.org/en/home/index','', '',  0);
+quizObjListAAD.push(quizAAD1);
+
+let quizAAD100 = new Quiz(1, 'What is JCP?', '' +
     '😊API is a program designed to communicate between two components.' +
     '\n😊The Internet is not a must.' +
     '\n😊API(A-Application__some application , P-programming__code ,I-interface__comminunicate between two components',
     ['program', 'communicate between two components']
     , '','', '',  0);
-quizObjListAAD.push(quiz1);
+quizObjListAAD.push(quizAAD100);
 
-let quiz2 = new Quiz(2, 'What is Web API?', '' +
+let quizAAD101 = new Quiz(2, 'What is Web API?', '' +
     '\n😊Web API is a subset of API Superset.' +
     '\n😊Web API is a program designed to communicate between two components by the internet',
     ['subset','program', 'communicate between two components','internet']
     , '', '','',0);
-quizObjListAAD.push(quiz2);
+quizObjListAAD.push(quizAAD101);
 
 
 
